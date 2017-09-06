@@ -50,12 +50,12 @@ for row_scene in  range(1,216):   #range(1,216)
         match=cell_effect.find(cell_scene);      #在食材功效下查找场景，匹配返回开始的索引值，否则返回-1
         if match!=-1:
             tag = 1
-            # print(row_match,cell_scene,cell_ID,cell_food,cell_effect)
-            # ws.write(row_match,col_match_scene,cell_scene)
-            # ws.write(row_match,col_match_ID,cell_ID)
-            # ws.write(row_match,col_match_food,cell_food)
-            # ws.write(row_match,col_match_effect,cell_effect)
-            # row_match = row_match + 1
+            print(row_match,cell_scene,cell_ID,cell_food,cell_effect)
+            ws.write(row_match,col_match_scene,cell_scene)
+            ws.write(row_match,col_match_ID,cell_ID)
+            ws.write(row_match,col_match_food,cell_food)
+            ws.write(row_match,col_match_effect,cell_effect)
+            row_match = row_match + 1
 
 
     if tag==0:
