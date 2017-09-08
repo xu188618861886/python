@@ -1,3 +1,4 @@
+# 根据某一场景下食材列表来匹配相应的食谱 
 import sys
 sys.path.append("d:\\users\\administrator\\appdata\local\\programs\\python\\python36\\lib\\site-packages")
 # 将包xlutils所在的位置加到搜索路径中
@@ -15,6 +16,7 @@ read_sheet2 = workbook_read.sheet_by_index(1)    # 读入文件的sheet2
 path_write = 'C:\\Users\\zhixu\Desktop\\4B_foodtag.xlsx'
 workbook_write = xlrd.open_workbook(path_write)  # 打开写入文件
 workbook_write_new = copy(workbook_write)
+#先复制一份Sheet然后再次基础上追加并保存到一份新的Excel文档中去
 write_sheet3 = workbook_write_new.get_sheet(2)    # 写入文件的sheet3
 write_sheet4 = workbook_write_new.get_sheet(3)    # 写入文件的sheet4
 
