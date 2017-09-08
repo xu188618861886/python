@@ -38,20 +38,22 @@ i = 1  # 食材的位置偏置
 
 for row_scene in range(1, 13):   # range(1,216)
     cell_scene = read_sheet2.cell(row_scene, col_scene).value  # 读出场景，存在cell中
-    for i in range(1, 3):
+    for i in range(1, 15):
         cell_material = read_sheet2.cell(row_scene, col_scene+i).value   # 读出食材，存在cell_material中
-        for row_recipe in range(1, 13123):  # range(1,13123)，将每个食材在清单中去寻找
-            cell_ID = read_sheet1.cell(row_recipe, col_recipe - 1).value  # 读出食谱ID，存在cell_ID中
-            cell_recipe = read_sheet1.cell(row_recipe, col_recipe).value  # 读出食谱名称，存在cell_recipe中
-            match = cell_recipe.find(cell_material)      # 在食谱下查找食材，匹配返回开始的索引值，否则返回-1
-            if match != -1:
-                tag = 1     # 成功标志
-                print(row_match, cell_scene, cell_ID, cell_recipe)
-                write_sheet3.write(row_match, col_match_scene, cell_scene)
-                write_sheet3.write(row_match, col_match_ID, cell_ID)
-                write_sheet3.write(row_match, col_match_recipe, cell_recipe)
-                row_match = row_match + 1
-
+        if cell_material:   # 判断是否为空
+            for row_recipe in range(1, 13123):  # range(1,13123)，将每个食材在清单中去寻找
+                cell_ID = read_sheet1.cell(row_recipe, col_recipe - 1).value  # 读出食谱ID，存在cell_ID中
+                cell_recipe = read_sheet1.cell(row_recipe, col_recipe).value  # 读出食谱名称，存在cell_recipe中
+                match = cell_recipe.find(cell_material)      # 在食谱下查找食材，匹配返回开始的索引值，否则返回-1
+                if match != -1:
+                    tag = 1     # 成功标志
+                    print(row_match, cell_scene, cell_ID, cell_recipe)
+                    write_sheet3.write(row_match, col_match_scene, cell_scene)
+                    write_sheet3.write(row_match, col_match_ID, cell_ID)
+                    write_sheet3.write(row_match, col_match_recipe, cell_recipe)
+                    row_match = row_match + 1
+        else:
+            break
     if tag == 0:
         print(row_unmatch,col_unmatch,cell_scene)
         write_sheet4.write(row_unmatch,col_unmatch,cell_scene)
@@ -59,3 +61,4 @@ for row_scene in range(1, 13):   # range(1,216)
     tag = 0
 
 workbook_write_new.save(path_write)
+
