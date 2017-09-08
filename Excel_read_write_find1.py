@@ -1,4 +1,4 @@
-#
+#根据食谱的描述中是否包括场景，将食谱与场景相匹配。
 
 import xlrd   #读取excel
 import xlwt   #写excel
